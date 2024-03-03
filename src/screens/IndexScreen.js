@@ -1,4 +1,4 @@
-import React , {useContext} from "react";
+import React , {useContext , useEffect} from "react";
 import {Text , View , StyleSheet , FlatList , Button ,TouchableOpacity} from "react-native";
 import BlogContext from "../context/BlogContext";
 import { AntDesign } from '@expo/vector-icons';
@@ -7,7 +7,12 @@ import {Feather} from '@expo/vector-icons';
 
 
 const IndexScreen = ({navigation}) => {
-    const {data , deleteBlog} = useContext(BlogContext);
+    const {data , deleteBlog , getBlogPosts} = useContext(BlogContext);
+
+
+    useEffect(()=>{
+       getBlogPosts();
+    },[data])
 
     return(<View>
         <Text>Index Screen</Text>
